@@ -1,19 +1,19 @@
-import { Container } from './styles'
+import { Container, Icons, Profile, Avatar } from './styles'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <Container>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
+      <h2>Inicio</h2>
+      <Icons>
+        <img src="src/assets/mail_outline.svg" />
+        <img src="src/assets/notifications_none.svg" />
+      </Icons>
+      <Profile>
+        <Avatar />
+        <p>Nombre Apellido</p>
+        <img src="src/assets/expand_more.svg" />
+      </Profile>
     </Container>
   )
 }

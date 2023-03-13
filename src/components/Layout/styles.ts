@@ -7,4 +7,5 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   border: solid;
+  width: 100%;
 `
