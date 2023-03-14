@@ -29,13 +29,16 @@ export const CardBattery = styled.div`
     margin-bottom: 0;
   }
 `
+type ListProps = {
+  columns: number
+}
 
-export const List = styled.div`
+export const List = styled.div<ListProps>`
   display: grid;
   gap: 25px;
   margin: auto;
   width: max-content;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
 `
 
 export const Flex = styled.div`
@@ -67,6 +70,7 @@ export const Energy = styled.div`
   height: fit-content;
   padding: 0 20px;
   margin-left: 20px;
+  white-space: nowrap;
 `
 
 export const Icons = styled.div`

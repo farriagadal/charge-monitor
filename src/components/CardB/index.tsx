@@ -7,16 +7,34 @@ import Battery from '../Battery'
 
 const CardB = () => {
   const store = useSelector((state: any) => state.resources)
-  const [chargersFiltered, setAssetsFiltered] = useState<any>(store.chargers || [])
+  const [chargersFiltered, setChargersFiltered] = useState<any>(store.chargers || [])
+  const [connectorsFiltered, setConnectorsFiltered] = useState<any>(store.connectors || [])
+  const [selectedCharger, setSelectedCharger] = useState<any>(null)
 
   useEffect(() => {
-    store.chargers.length > 0 && setAssetsFiltered(store.chargers)
+    if (store.chargers.length > 0) {
+      setChargersFiltered(store.chargers)
+      changeCharger(({ value: store.chargers[0].id, label: store.chargers[0].name }))
+    }
   }, [store.chargers])
 
-  const getAssetsOptions = () => {
+  const changeCharger = (data: any) => {
+    setSelectedCharger(data)
+    const array = store.connectors.filter((station: any) => station.chargerId === data.value)
+    setConnectorsFiltered(array)
+  }
+
+  const getChargersOptions = () => {
     const array: any[] = []
-    chargersFiltered.map((asset: any) => array.push({ value: asset.id, label: asset.name }))
+    chargersFiltered.map((charger: any) => array.push({ value: charger.id, label: charger.name }))
     return array
+  }
+
+  const getCharger = () => {
+    if (selectedCharger) {
+      return store.chargers.find((charger: any) => charger.id === selectedCharger.value)
+    }
+    return null
   }
 
   return (
@@ -25,36 +43,31 @@ const CardB = () => {
         <Box>
           <p>CARGADORES</p>
           {
-            getAssetsOptions().length > 0 &&
+            getChargersOptions().length > 0 &&
             <SelectInput
               placeholder={'asdadasd'}
-              options={getAssetsOptions()}
-              defaultValue={getAssetsOptions()[0]}
-              onChange={(data: any) => { console.log('onChange data', data) }}
+              options={getChargersOptions()}
+              defaultValue={getChargersOptions()[0]}
+              onChange={changeCharger}
             />
-
           }
         </Box>
       </Header>
       <Body>
         <Title>Conectores:</Title>
-        <List>
-          <CardBattery>
-            <Battery />
-            <p>Conector C1</p>
-          </CardBattery>
-          <CardBattery>
-            <Battery />
-            <p>Conector C1</p>
-          </CardBattery>
-          <CardBattery>
-            <Battery />
-            <p>Conector C1</p>
-          </CardBattery>
+        <List columns={connectorsFiltered.length}>
+          {
+            connectorsFiltered.map((connector: any, index: number) => (
+              <CardBattery key={index}>
+                <Battery />
+                <p>{connector.name}</p>
+              </CardBattery>
+            ))
+          }
         </List>
         <Flex>
-          <p>Energia total estación</p>
-          <Energy>117 kW</Energy>
+          <p>Energia total suministrada</p>
+          <Energy>{getCharger()?.energy_supplied || 0} kW</Energy>
         </Flex>
         <Icons>
           <div>

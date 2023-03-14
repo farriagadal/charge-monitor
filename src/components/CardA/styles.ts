@@ -23,7 +23,7 @@ export const Energy = styled.div`
   color: #179087;
   height: fit-content;
   padding: 0 20px;
-  margin-left: 20px;
+  margin-left: auto;
 `
 
 export const Flex = styled.div`
