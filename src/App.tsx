@@ -16,12 +16,11 @@ function About () {
 }
 
 function App () {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   fetchResources()
-  //   // dispatch(fetchResources())
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchResources())
+  }, [dispatch])
 
   return (
     <Provider store={store}>
