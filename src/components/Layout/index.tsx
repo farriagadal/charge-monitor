@@ -1,7 +1,7 @@
 
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
-import { Container, Content } from './styles'
+import { Container, Content, Box } from './styles'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -13,7 +13,9 @@ const Layout = ({ children }: LayoutProps) => {
 			<Sidebar />
 			<Content>
 				<Navbar />
-				{ children }
+        <Box>
+          { children }
+        </Box>
 			</Content>
     </Container>
   )

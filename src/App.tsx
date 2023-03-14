@@ -1,17 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import Layout from './components/Layout'
-
-function Home () {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="card">
-      <button onClick={() => { setCount(count + 1) }}>count is {count}</button>
-      <p>Edit & save to test HMR</p>
-    </div>
-  )
-}
+import Home from './views/Home'
 
 function About () {
   return (
