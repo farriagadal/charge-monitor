@@ -11,7 +11,7 @@ const Navbar = () => {
       </Icons>
       <Profile>
         <Avatar />
-        <p>Nombre Apellido</p>
+        <p>Fernando Arriagada</p>
         <img src="/expand_more.svg" />
       </Profile>
     </Container>
