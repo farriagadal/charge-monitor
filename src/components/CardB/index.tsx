@@ -59,7 +59,7 @@ const CardB = () => {
           {
             connectorsFiltered.map((connector: any, index: number) => (
               <CardBattery key={index}>
-                <Battery />
+                <Battery status={connector.status} percetage={connector.charge_percentage} />
                 <p>{connector.name}</p>
               </CardBattery>
             ))

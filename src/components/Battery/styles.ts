@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+type ContainerProps = {
+  percetage: number
+}
+
+export const Container = styled.div<ContainerProps>`
   position: relative;
   width: max-content;
   height: 54px;
@@ -10,7 +14,7 @@ export const Container = styled.div`
     display: block;
     position: absolute;
     width: 24px;
-    height: 26px;
+    height: ${({ percetage }) => percetage * 45 / 100}px;
     background: #87E0A5;
     left: 50%;
     bottom: 0;

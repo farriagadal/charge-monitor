@@ -1,9 +1,32 @@
 import { Container } from './styles'
 
-const Battery = () => {
+type BatteryProps = {
+  status: 'charging' | 'faulted' | 'available'
+  percetage: number
+}
+
+const Battery = ({ status, percetage }: BatteryProps) => {
   return (
-    <Container>
-      <img src="src/assets/battery-default.svg" alt="battery" />
+    <Container
+      percetage={
+        status === 'charging'
+          ? percetage > 100
+            ? 100
+            : percetage
+          : 0
+      }>
+      {
+        status === 'charging' &&
+        <img src="src/assets/battery-default.svg" />
+      }
+      {
+        status === 'available' &&
+        <img src="src/assets/battery-available.svg" />
+      }
+      {
+        status !== 'charging' && status !== 'available' &&
+        <img src="src/assets/battery-fallas.svg" />
+      }
     </Container>
   )
 }
