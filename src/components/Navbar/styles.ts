@@ -18,13 +18,14 @@ export const Icons = styled.div`
   display: flex;
   align-items: center;
 
-
   img {
     margin-right: 18px;
+    cursor: pointer;
   }
 `
 export const Profile = styled.div`
   display: flex;
+  cursor: pointer;
 
   p {
     font-weight: 400;

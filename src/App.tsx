@@ -6,11 +6,10 @@ import store from './store'
 import { fetchResources } from './store/slices/resources'
 import { useEffect } from 'react'
 
-function About () {
+function OtherPage () {
   return (
     <div>
-      <h2>About</h2>
-      <p>This is the about page</p>
+      <h2>Other Page</h2>
     </div>
   )
 }
@@ -28,7 +27,7 @@ function App () {
         <Layout>
           <Routes>
             <Route path="/" Component={Home} />
-            <Route path="/about" Component={About} />
+            <Route path="*" Component={OtherPage} />
           </Routes>
         </Layout>
       </Router>

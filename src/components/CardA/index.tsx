@@ -1,10 +1,12 @@
 import { Box, Energy, Flex, Address } from './styles'
 import { Card, Body, Header } from '../../styled-components/Card'
-import { useSelector } from 'react-redux'
-import SelectInput from '../SelectInput/indext'
+import { useSelector, useDispatch } from 'react-redux'
+import SelectInput from '../SelectInput/index'
 import { useEffect, useState } from 'react'
+import { setStationSelected } from '../../store/slices/resources'
 
 const CardA = () => {
+  const dispatch = useDispatch()
   const store = useSelector((state: any) => state.resources)
   const [assetsFiltered, setAssetsFiltered] = useState<any>(store.assets || [])
   const [stationsFiltered, setStationsFiltered] = useState<any>(store.assets || [])
@@ -14,11 +16,12 @@ const CardA = () => {
 
   useEffect(() => {
     store.assets.length > 0 && setAssetsFiltered(store.assets)
-    store.stations.length > 0 && setStationsFiltered(store.stations)
+    // store.stations.length > 0 && setStationsFiltered(store.stations)
     if (store.assets.length > 0) {
-      changeAsset({ value: store.assets[0].id, label: store.assets[0].name })
+      const array = store.stations.filter((station: any) => station.assetId === store.assets[0].id)
+      setStationsFiltered(array)
     }
-  }, [store])
+  }, [store.assets, store.stations])
 
   const getAssetsOptions = () => {
     const array: any[] = []
@@ -37,10 +40,12 @@ const CardA = () => {
     const array = store.stations.filter((station: any) => station.assetId === data.value)
     setStationsFiltered(array)
     setSelectedStation({ value: array[0].id, label: array[0].name })
+    dispatch(setStationSelected({ value: array[0].id, label: array[0].name }))
   }
 
   const changeStation = (data: any) => {
     setSelectedStation(data)
+    dispatch(setStationSelected(data))
   }
 
   const getStation = () => {
@@ -66,14 +71,12 @@ const CardA = () => {
         </Box>
         <Box>
           <p>ESTACIÓN</p>
-          { getStationsOptions().length > 0 &&
-            <SelectInput
-              placeholder=""
-              options={getStationsOptions()}
-              defaultValue={getStationsOptions()[0]}
-              onChange={(data: any) => { changeStation(data) }}
-            />
-          }
+          <SelectInput
+            placeholder="Selecciona"
+            options={getStationsOptions()}
+            defaultValue={null}
+            onChange={changeStation}
+          />
         </Box>
       </Header>
       <Body>

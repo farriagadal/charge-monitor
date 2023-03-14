@@ -5,6 +5,10 @@ export const Container = styled.div`
   grid-template-columns: 453px 1fr;
   gap: 32px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const Box = styled.div`

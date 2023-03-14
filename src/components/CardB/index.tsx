@@ -1,27 +1,30 @@
 import { Box, CardBattery, List, Flex, Energy, Icons, Title } from './styles'
 import { Card, Body, Header } from '../../styled-components/Card'
-import { useSelector } from 'react-redux'
-import SelectInput from '../SelectInput/indext'
+import { useSelector, useDispatch } from 'react-redux'
+import SelectInput from '../SelectInput'
 import { useEffect, useState } from 'react'
 import Battery from '../Battery'
+import { setChargerSelected } from '../../store/slices/resources'
 
 const CardB = () => {
+  const dispatch = useDispatch()
   const store = useSelector((state: any) => state.resources)
   const [chargersFiltered, setChargersFiltered] = useState<any>(store.chargers || [])
-  const [connectorsFiltered, setConnectorsFiltered] = useState<any>(store.connectors || [])
+  const [connectorsFiltered, setConnectorsFiltered] = useState<any>([])
   const [selectedCharger, setSelectedCharger] = useState<any>(null)
 
   useEffect(() => {
     if (store.chargers.length > 0) {
-      setChargersFiltered(store.chargers)
-      changeCharger(({ value: store.chargers[0].id, label: store.chargers[0].name }))
+      const array = store.chargers.filter((charger: any) => charger.stationId === store.stationSelected.value)
+      setChargersFiltered(array)
     }
-  }, [store.chargers])
+  }, [store.chargers, store.stationSelected])
 
   const changeCharger = (data: any) => {
     setSelectedCharger(data)
     const array = store.connectors.filter((station: any) => station.chargerId === data.value)
     setConnectorsFiltered(array)
+    dispatch(setChargerSelected(data))
   }
 
   const getChargersOptions = () => {
@@ -45,9 +48,9 @@ const CardB = () => {
           {
             getChargersOptions().length > 0 &&
             <SelectInput
-              placeholder={'asdadasd'}
+              placeholder="Selecciona"
               options={getChargersOptions()}
-              defaultValue={getChargersOptions()[0]}
+              defaultValue={null}
               onChange={changeCharger}
             />
           }
