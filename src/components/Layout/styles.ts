@@ -13,6 +13,6 @@ export const Box = styled.div`
   background: #F5FFFE;
   box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.24);
   border-radius: 24px 24px 0px 0px;
-  height: calc(100vh - (105px + 32px * 2));
+  min-height: calc(100vh - (105px + 32px * 2));
   padding: 32px;
 `

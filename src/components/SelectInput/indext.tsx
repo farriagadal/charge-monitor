@@ -13,13 +13,13 @@ export default function SelectInput ({ defaultValue, onChange, options, placehol
     control: (base: any) => ({
       ...base,
       padding: '0 12px',
-      background: 'transparent',
-      border: 'solid 1px #2e2e2e',
+      background: '#FFFFFF',
+      border: 'none',
       borderRadius: 4,
       cursor: 'pointer',
       boxShadow: 'none',
-      height: 32,
-      minHeight: 32,
+      height: 40,
+      minHeight: 40,
       '&:hover': {
         borderColor: '#1797ff'
       }
@@ -74,14 +74,15 @@ export default function SelectInput ({ defaultValue, onChange, options, placehol
     }),
     singleValue: (base: any) => ({
       ...base,
-      color: '#343434',
+      color: '#323232',
       fontWeight: '400',
-      marginTop: '-3px'
+      marginTop: '-1px',
+      fontSize: '16px',
+      textTransform: 'capitalize'
     }),
     indicatorsContainer: (base: any) => ({
       ...base,
-      color: '#343434',
-      marginTop: '-3px'
+      color: '#343434'
     })
   }
   return (

@@ -1,3 +1,4 @@
+import { Box, Energy, Flex, Address } from './styles'
 import { Card, Body, Header } from '../../styled-components/Card'
 import { useSelector } from 'react-redux'
 import SelectInput from '../SelectInput/indext'
@@ -24,16 +25,46 @@ const CardA = () => {
     return array
   }
 
+  console.log('getAssetsOptions()', getAssetsOptions())
+
   return (
     <Card>
       <Header>
-        <p>ACTIVO</p>
-        <SelectInput placeholder={'asdadasd'} options={getAssetsOptions()} defaultValue={undefined} onChange={(data: any) => { console.log('onChange data', data) }} />
-        <p>ACTIVO</p>
-        <SelectInput placeholder={'asdadasd'} options={getStationsOptions()} defaultValue={undefined} onChange={(data: any) => { console.log('onChange data', data) }} />
+        <Box>
+          <p>ACTIVO</p>
+          {
+            getAssetsOptions().length > 0 &&
+            <SelectInput
+              placeholder={'asdadasd'}
+              options={getAssetsOptions()}
+              defaultValue={getAssetsOptions()[0]}
+              onChange={(data: any) => { console.log('onChange data', data) }}
+            />
+
+          }
+        </Box>
+
+        <Box>
+          <p>ESTACIÓN</p>
+          {
+            getStationsOptions().length > 0 &&
+            <SelectInput
+              placeholder={'asdadasd'}
+              options={getStationsOptions()}
+              defaultValue={getStationsOptions()[0]}
+              onChange={(data: any) => { console.log('onChange data', data) }}
+            />
+          }
+        </Box>
       </Header>
       <Body>
-        Energia total estación
+        <Flex>
+          <p>Energia total estación</p>
+          <Energy>117 kW</Energy>
+        </Flex>
+        <Address>
+          Av. El Salto 4651, Huechuraba, RM.
+        </Address>
       </Body>
     </Card>
   )

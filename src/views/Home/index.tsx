@@ -1,10 +1,16 @@
 import CardA from '../../components/CardA'
-import { Container } from './styles'
+import CardB from '../../components/CardB'
+import CardC from '../../components/CardC'
+import { Container, Box } from './styles'
 
 const Home = () => {
   return (
     <Container>
-      <CardA />
+      <Box>
+        <CardA />
+        <CardB />
+      </Box>
+      <CardC />
     </Container>
   )
 }

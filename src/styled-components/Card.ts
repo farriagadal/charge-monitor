@@ -20,5 +20,5 @@ export const Header = styled.div`
 `
 
 export const Body = styled.div`
-  padding: 20px 29px 10px 29px;
+  padding: 24px 29px 10px 29px;
 `
