@@ -8,9 +8,16 @@ const CardA = () => {
   const store = useSelector((state: any) => state.resources)
   const [assetsFiltered, setAssetsFiltered] = useState<any>(store.assets || [])
   const [stationsFiltered, setStationsFiltered] = useState<any>(store.assets || [])
+
+  const [selectedAsset, setSelectedAsset] = useState<any>(null)
+  const [selectedStation, setSelectedStation] = useState<any>(stationsFiltered || null)
+
   useEffect(() => {
     store.assets.length > 0 && setAssetsFiltered(store.assets)
     store.stations.length > 0 && setStationsFiltered(store.stations)
+    if (store.assets.length > 0) {
+      changeAsset({ value: store.assets[0].id, label: store.assets[0].name })
+    }
   }, [store])
 
   const getAssetsOptions = () => {
@@ -25,34 +32,46 @@ const CardA = () => {
     return array
   }
 
-  console.log('getAssetsOptions()', getAssetsOptions())
+  const changeAsset = (data: any) => {
+    setSelectedAsset(data)
+    const array = store.stations.filter((station: any) => station.assetId === data.value)
+    setStationsFiltered(array)
+    setSelectedStation({ value: array[0].id, label: array[0].name })
+  }
+
+  const changeStation = (data: any) => {
+    setSelectedStation(data)
+  }
+
+  const getStation = () => {
+    if (selectedStation) {
+      return store.stations.find((station: any) => station.id === selectedStation.value)
+    }
+    return null
+  }
 
   return (
     <Card>
       <Header>
         <Box>
           <p>ACTIVO</p>
-          {
-            getAssetsOptions().length > 0 &&
+          { getAssetsOptions().length > 0 &&
             <SelectInput
-              placeholder={'asdadasd'}
+              placeholder=""
               options={getAssetsOptions()}
               defaultValue={getAssetsOptions()[0]}
-              onChange={(data: any) => { console.log('onChange data', data) }}
+              onChange={changeAsset}
             />
-
           }
         </Box>
-
         <Box>
           <p>ESTACIÓN</p>
-          {
-            getStationsOptions().length > 0 &&
+          { getStationsOptions().length > 0 &&
             <SelectInput
-              placeholder={'asdadasd'}
+              placeholder=""
               options={getStationsOptions()}
               defaultValue={getStationsOptions()[0]}
-              onChange={(data: any) => { console.log('onChange data', data) }}
+              onChange={(data: any) => { changeStation(data) }}
             />
           }
         </Box>
@@ -60,10 +79,10 @@ const CardA = () => {
       <Body>
         <Flex>
           <p>Energia total estación</p>
-          <Energy>117 kW</Energy>
+          <Energy>{ getStation()?.total_energy || 0 } kW</Energy>
         </Flex>
         <Address>
-          Av. El Salto 4651, Huechuraba, RM.
+          { getStation()?.address }
         </Address>
       </Body>
     </Card>
