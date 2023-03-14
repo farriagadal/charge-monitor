@@ -17,15 +17,15 @@ const Battery = ({ status, percetage }: BatteryProps) => {
       }>
       {
         status === 'charging' &&
-        <img src="src/assets/battery-default.svg" />
+        <img src="/battery-default.svg" />
       }
       {
         status === 'available' &&
-        <img src="src/assets/battery-available.svg" />
+        <img src="/battery-available.svg" />
       }
       {
         status !== 'charging' && status !== 'available' &&
-        <img src="src/assets/battery-fallas.svg" />
+        <img src="/battery-fallas.svg" />
       }
     </Container>
   )

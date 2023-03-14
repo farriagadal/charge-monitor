@@ -74,15 +74,15 @@ const CardB = () => {
         </Flex>
         <Icons>
           <div>
-            <img src="src/assets/battery-available.svg" />
+            <img src="/battery-available.svg" />
             <p>DISPONIBLES</p>
           </div>
           <div>
-            <img src="src/assets/battery-fallas.svg" />
+            <img src="/battery-fallas.svg" />
             <p>CON FALLAS</p>
           </div>
           <div>
-            <img src="src/assets/battery-default.svg" />
+            <img src="/battery-default.svg" />
             <p>CARGANDO</p>
           </div>
         </Icons>

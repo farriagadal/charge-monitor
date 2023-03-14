@@ -3,15 +3,15 @@ import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
   const menu = [
-    { name: 'Inicio', path: '/', icon: 'src/assets/home.svg' },
-    { name: 'Consumo', path: '/consumo', icon: 'src/assets/lightbulb_outline.svg' },
-    { name: 'Informe', path: '/informe', icon: 'src/assets/bar_chart.svg' },
-    { name: 'Configuraciones', path: '/configuraciones', icon: 'src/assets/settings.svg' }
+    { name: 'Inicio', path: '/', icon: '/home.svg' },
+    { name: 'Consumo', path: '/consumo', icon: '/lightbulb_outline.svg' },
+    { name: 'Informe', path: '/informe', icon: '/bar_chart.svg' },
+    { name: 'Configuraciones', path: '/configuraciones', icon: '/settings.svg' }
   ]
 
   return (
     <Container>
-      <Logo src="src/assets/logo.svg" alt="logo" />
+      <Logo src="/logo.svg" alt="logo" />
       <List>
         {menu.map((item, index) => (
           <NavLink to={item.path} key={index}>

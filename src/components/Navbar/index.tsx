@@ -6,13 +6,13 @@ const Navbar = () => {
     <Container>
       <h2>Inicio</h2>
       <Icons>
-        <img src="src/assets/mail_outline.svg" />
-        <img src="src/assets/notifications_none.svg" />
+        <img src="/mail_outline.svg" />
+        <img src="/notifications_none.svg" />
       </Icons>
       <Profile>
         <Avatar />
         <p>Nombre Apellido</p>
-        <img src="src/assets/expand_more.svg" />
+        <img src="/expand_more.svg" />
       </Profile>
     </Container>
   )
