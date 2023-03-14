@@ -2,12 +2,14 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 interface ResourceState {
+  assets: any[]
   stations: any[]
   chargers: any[]
   connectors: any[]
 }
 
 const initialState: ResourceState = {
+  assets: [],
   stations: [],
   chargers: [],
   connectors: []
@@ -16,7 +18,7 @@ const initialState: ResourceState = {
 export const fetchResources: any = () => async (dispatch: any) => {
   try {
     const response = await axios.get('https://my-json-server.typicode.com/AlvaroArratia/static-api/db')
-    console.log('response', response)
+    // console.log('response', response)
     dispatch(setResources(response.data))
   } catch (error) {
     console.log(error)
@@ -29,6 +31,7 @@ export const resourcesSlice = createSlice({
   reducers: {
     setResources: (state, action: PayloadAction<ResourceState>) => {
       console.log('action.payload', action.payload)
+      state.assets = action.payload.assets
       state.stations = action.payload.stations
       state.chargers = action.payload.chargers
       state.connectors = action.payload.connectors
