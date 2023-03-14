@@ -4,6 +4,7 @@ export const Card = styled.div`
   background: #FFFFFF;
   box-shadow: 0px 4px 16px rgba(50, 50, 50, 0.16);
   border-radius: 16px;
+  height: fit-content;
 `
 
 export const Header = styled.div`
